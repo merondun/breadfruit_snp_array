@@ -1,8 +1,6 @@
-
-
 # Breadfruit SNP Array Development
 
-The goal of this ~10 week project is to identify a set of candidate SNP markers for a 96-SNP breadfruit cultivar identification panel. We will [already have a cohort-level VCF ready](cohort_vcf_calling/README.md) for you encompassing 16 accessions, with the goals being to filter and evaluate SNPs for cultivar discrimination. You will assess SNP importance using, likely, both simple statistics and classification-based approaches, screen loci for technical suitability using flanking-sequence context, and produce a final annotated SNP set suitable for oligo ordering. But, please note that this outline is intended as a tentative roadmap! 
+The goal of this ~10 week project is to identify a set of candidate SNP markers for a 96-SNP breadfruit cultivar identification panel. We will already have a cohort-level VCF ready for you encompassing 16 accessions, with the goals being to filter and evaluate SNPs for cultivar discrimination. You will assess SNP importance using, likely, both simple statistics and classification-based approaches, screen loci for technical suitability using flanking-sequence context, and produce a final annotated SNP set suitable for oligo ordering. But, please note that this outline is intended as a tentative roadmap! 
 
 # Background Info 
 
@@ -10,7 +8,7 @@ The goal of this ~10 week project is to identify a set of candidate SNP markers 
 
 This [2023 paper](https://doi.org/10.1016/j.cub.2022.12.001) has a great overview of our current understanding of breadfruit genetic and geographic diversity. 
 
-The goals will be similar to the fluidigm-scale components of this [lettuce paper](https://doi.org/10.1093/hr/uhac119), and the SNP components of this [melon paper](https://doi.org/10.1186/s12870-023-04056-7). There are also probably some useful components from our lab's recent [pineapple](https://doi.org/10.1007/s00438-025-02275-1) array paper.
+The goals will be similar to the fluidigm-scale components of this [lettuce paper](https://doi.org/10.1093/hr/uhac119), and the SNP components of this [melon paper](https://doi.org/10.1186/s12870-023-04056-7). There are also probably some useful components from our lab's recent [pineapple]( https://doi.org/10.1007/s00438-025-02275-1) array paper.
 
 Info on our germplasm collection of breadfruit near Hilo: [link](https://www.ars.usda.gov/pacific-west-area/hilo-hi/daniel-k-inouye-us-pacific-basin-agricultural-research-center/tropical-plant-genetic-resources-and-disease-research/docs/breadfruit-collection/) 
 
@@ -21,6 +19,31 @@ Info on breadfruit cultivar varieties from the national botanical garden: [link]
 Nearly all of our work is done on the SciNet cluster [ceres](https://scinet.usda.gov/guides/use/) . I'm not sure how much background you have on HPC systems, but there's some good ceres-specific resources available, such as [here](https://datascience.101workbook.org/06-hpc/01-hpc-networks/02-scinet-usda-ars/03-scinet-ceres-cluster/#gsc.tab=0) .
 
 I also highly recommend using ceres' [OnDemand](https://ceres-ondemand.scinet.usda.gov/pun/sys/dashboard)  tools: their VScode sessions allow you to request CPUs/RAM so you can troubleshoot / edit scripts directly in the session, save your workspace / folders / scripts for easy access at next log-in, and even easy figure downloading. I'd be happy to give you a quick screenshare overview in case you're curious. 
+
+Typically, we will submit jobs using a SLURM header like this, "charging" our hours to our core project `coffea_pangenome`
+
+```bash
+#!/bin/bash
+
+#SBATCH --time=4-00:00:00    
+#SBATCH --cpus-per-task=24
+#SBATCH --mem=48Gb
+#SBATCH --partition=ceres
+#SBATCH --account=coffea_pangenome
+```
+
+You will have a small home directory (~15 Gb), but we have a large project directory here: `/project/coffea_pangenome` 
+
+A project subfolder already exists for the assay work here: `/project/coffea_pangenome/Breadfruit_SNP_Array` 
+
+Key directories used for generating the cohort VCF:
+
+- `01_raw_hifi/` — original HiFi reads per sample
+- `02_subset_reads/` — read subset for equal amounts of input (20 Gb, roughly 25x) prepared for alignment/SNP calling
+- `03_bams/` — aligned BAMs
+- `04_vcfs/` — per-sample VCF/gVCF
+- `genome/` — reference genome, including a `.bed` file with repeats generated from earlgrey. 
+- `containers/` — apptainers, e.g. `DeepVariant.sif`
 
 ## Documentation & tools
 
@@ -39,15 +62,13 @@ You probably already have ways of documenting your code (Git / markdown), but in
 
 ## People
 
-
-
-| Name                     | Function                             | Photo                                                        |
-| ------------------------ | ------------------------------------ | ------------------------------------------------------------ |
-| **Dr. Qingyi Yu**        | Primary advisor, Research Geneticist | ![Qingyi](imgs/Qingyi.png) |
-| **Dr. Justin Merondun**  | Research advisor, Postdoc            | ![Justin](imgs/Justin.png) |
+| Name                     | Function                             | Photo                        |
+| ------------------------ | ------------------------------------ | ---------------------------- |
+| **Dr. Qingyi Yu**        | Primary advisor, Research Geneticist | ![Qingyi](imgs/Qingyi.png)   |
+| **Dr. Justin Merondun**  | Research advisor, Postdoc            | ![Justin](imgs/Justin.png)   |
 | **Amberly Buer**         | Lab support, Technician              | ![Amberly](imgs/Amberly.png) |
-| **Dr. Zhikai Yang**      | Ancillary support, Postdoc           | ![Zhikai](imgs/Zhikai.png) |
-| **Dr. Tracie Matsumoto** | USDA Hilo Plant Unit Research Leader | ![Tracie](imgs/Tracie.png) |
+| **Dr. Zhikai Yang**      | Ancillary support, Postdoc           | ![Zhikai](imgs/Zhikai.png)   |
+| **Dr. Tracie Matsumoto** | USDA Hilo Plant Unit Research Leader | ![Tracie](imgs/Tracie.png)   |
 
 ## Metadata
 
@@ -74,8 +95,6 @@ We have long read PacBio HiFi data for 14 breadfruit and 2 closely related speci
 
 We also have > 100 DNA extracts from lots of other cultivars that we will use to test the SNP array once we have the SNP panel. 
 
-
-
 # Tentative Outline
 
 Note that this is a just a potential roadmap, not a rigid action plan.
@@ -97,16 +116,14 @@ Overall, the goal is to identify ~96 SNPs (and some back-ups) and their flanking
 | 2    | Recode SNPs for analysis using ALT allele presence/absence to simplify ploidy allele dosage complications. **Run basic exploratory analyses** to check sample/cultivar structure and identify outliers. | `bcftools query`,  for analysis Python (`pandas`, `scikit-allel`) or R (`vcfR`, `adegenet`) | Analysis-ready SNP matrix; PCA/clustering plots; note on sample outliers. |
 | 3    | **Score SNPs for cultivar discrimination** using simple per-marker statistics such as between-cultivar differences, cultivar-specific ALT allele presence, and missingness. | Python (`pandas`, `numpy`) or R (`tidyverse`)                | Ranked SNP table based on diagnostic statistics.             |
 | 4    | Run Random Forest **classification to predict cultivar identity** from SNPs and rank markers by feature importance. | Python ([`scikit-learn`](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html?utm_source=openai)) or R ([`ranger`](https://parsnip.tidymodels.org/reference/details_rand_forest_ranger.html?utm_source=openai)) | Random Forest feature-importance table; classification summary/confusion matrix. |
-| 5    | **Combine statistical ranking and Random Forest results** to generate a prioritized shortlist of candidate SNPs. Remove obvious redundant markers with highly similar genotype patterns or close physical proximity (e.g. 250 kb / 1 Mb) | Python (`pandas`, `numpy`) or R; optional correlation/LD scripts | Prioritized candidate SNP shortlist.                         |
-| 6    | **Screen shortlisted SNPs** for assay suitability by checking flanking-region repeat overlap, nearby variants, and general flanking-sequence quality. Define a preliminary set of top candidate markers for the planned 96-SNP panel. | `bedtools`, `bcftools`, `samtools faidx`, Python or R for tables | Assay-screened candidate marker list; preliminary top panel set. |
-| 7    | **Refine the candidate panel** by removing technically weak or redundant loci, confirm cultivar discrimination using in silico testing (for example leave-one-out cross-validation, confusion matrices, and clustering consistency), and prepare final marker annotations including flanking-sequence and QC/design notes. | Python or R; manual review                                   | Refined annotated 96-SNP panel plus backups.                 |
+| 5    | **Combine statistical ranking and Random Forest results** to generate a prioritized shortlist of candidate SNPs. Remove obvious redundant markers with highly similar genotype patterns or if they are close together / in LD (e.g. 250 kb / 1 Mb apart to be safe) | Python (`pandas`, `numpy`) or R                              | Prioritized candidate SNP shortlist.                         |
+| 6    | **Screen shortlisted SNPs** by checking flanking-region repeat overlap, nearby variants, and flanking-sequence quality. Define a preliminary set of top candidate markers for the planned 96-SNP panel. | `bedtools`, `bcftools`, `samtools faidx`, Python or R for tables | Assay-screened candidate marker list; preliminary top panel set. |
+| 7    | **Refine the candidate panel** by removing redundant loci, confirm cultivar discrimination using in silico testing (for example leave-one-out cross-validation, confusion matrices, and clustering consistency), and prepare final marker annotations including flanking-sequence. | Python or R; manual review                                   | Refined annotated 96-SNP panel plus backups.                 |
 | 8    | **Extract final 96 SNPs** and flanking sequences into a table for ordering oligos, **double check all previous steps.** | `bcftools` / `bedtools` with R or python table checks        | Final annotated SNP table with flanks.                       |
 | 9    | Edit, clean, and **finalize bioinformatic documentation, start final report.** | Markdown or similar                                          | Markdown notebook with code.                                 |
 | 10   | **Synthesize final report** summarizing methods, filtering, ranking, in silico validation, and recommended 96-SNP panel. |                                                              | Final report; final 96-SNP panel; backup SNP list; some key figures / tables. |
 
-
-
-# Potential Random Forest Approach
+## Potential Random Forest Approach
 
 Just to give an idea of how one might approach the week 4 objectives of using random forest classifications to identify SNPs to predict cultivars, I have included a little snippet below. 
 
@@ -141,8 +158,3 @@ rf_fit <- rf_spec %>%
 ```
 
 We would then assess prediction performance with confusion matrices and rank SNPs by feature importance to identify the most informative candidate markers.
-
-
-
-
-
