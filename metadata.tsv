@@ -1,0 +1,17 @@
+Accession	Cultivar	Species	Ploidy	Seeds	Bases_Gb	Read_Length_Kb	Raw_HiFi
+HART001	Maafala	Artocarpus_altilis	2N	Seedless	59.32	11206.3	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART001.HiFi.fastq.gz
+HART050	Kukumu_tasi	Artocarpus_altilis	2N	Seeded	38.96	17753.1	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART050.HiFi.fastq.gz
+HART069	Ulu_Fiti	Artocarpus_altilis	2N	Seeded	72.95	12674.4	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART069.HiFi.fastq.gz
+HART030	Huero	Artocarpus_altilis	3N	Seedless	96.64	18338.2	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART030.HiFi.fastq.gz
+HART032	Hamoa	Artocarpus_altilis	3N	Seedless	88.25	15382.2	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART032.HiFi.fastq.gz
+HART033	Patara	Artocarpus_altilis	3N	Seedless	139.76	14764.85	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART033.HiFi.fastq.gz
+HART038	Lemai	Artocarpus_altilis	3N	Seedless	42.63	18956.6	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART038.HiFi.fastq.gz
+HART053	Nahnmwal	Artocarpus_altilis	3N	Seedless	78.23	15006	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART053.HiFi.fastq.gz
+HART063	Breadnut	Artocarpus camansi	camansi	NA	37.9	9800.9	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART063.HiFi.fastq.gz
+HART067	Dugdug	Artocarpus_mariannensis	mariannensis	NA	37.35	10214.9	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART067.HiFi.fastq.gz
+ZZ3	Ulu_hamoa	Artocarpus_sp.	hybrid_2N	Seeded	29.22	18949.4	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/ZZ3.HiFi.fastq.gz
+ZZ7	Ulu_afa_elise	Artocarpus_sp.	hybrid_2N	Seeded	28.6	20738.2	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/ZZ7.HiFi.fastq.gz
+ZZ9	Ulu_afa	Artocarpus_sp.	hybrid_2N	Seeded	30.02	19115.8	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/ZZ9.HiFi.fastq.gz
+HART046	Midolab	Artocarpus_sp.	hybrid_3N	Seedless	111.19	14132.65	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART046.HiFi.fastq.gz
+HART049	Meinpohnsakar	Artocarpus_sp.	hybrid_3N	Seedless	92.85	8248.15	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/HART049.HiFi.fastq.gz
+H6	Meikole	Artocarpus_sp.	hybrid_4N	Seeded	87.41	15742.8	/project/coffea_pangenome/Breadfruit_SNP_Array/01_raw_hifi/H6.HiFi.fastq.gz

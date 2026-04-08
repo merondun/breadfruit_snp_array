@@ -2,7 +2,7 @@
 
 # Breadfruit SNP Array Development
 
-The goal of this ~10 week project is to identify a set of candidate SNP markers for a 96-SNP breadfruit cultivar identification panel. We will already have a cohort-level VCF ready for you encompassing 16 accessions, with the goals being to filter and evaluate SNPs for cultivar discrimination. You will assess SNP importance using, likely, both simple statistics and classification-based approaches, screen loci for technical suitability using flanking-sequence context, and produce a final annotated SNP set suitable for oligo ordering. But, please note that this outline is intended as a tentative roadmap! 
+The goal of this ~10 week project is to identify a set of candidate SNP markers for a 96-SNP breadfruit cultivar identification panel. We will [already have a cohort-level VCF ready](cohort_vcf_calling/README.md) for you encompassing 16 accessions, with the goals being to filter and evaluate SNPs for cultivar discrimination. You will assess SNP importance using, likely, both simple statistics and classification-based approaches, screen loci for technical suitability using flanking-sequence context, and produce a final annotated SNP set suitable for oligo ordering. But, please note that this outline is intended as a tentative roadmap! 
 
 # Background Info 
 
@@ -10,7 +10,7 @@ The goal of this ~10 week project is to identify a set of candidate SNP markers 
 
 This [2023 paper](https://doi.org/10.1016/j.cub.2022.12.001) has a great overview of our current understanding of breadfruit genetic and geographic diversity. 
 
-The goals will be similar to the fluidigm-scale components of this [lettuce paper](https://doi.org/10.1093/hr/uhac119), and the SNP components of this [melon paper](https://doi.org/10.1186/s12870-023-04056-7). There are also probably some useful components from our lab's recent [pineapple]( https://doi.org/10.1007/s00438-025-02275-1) array paper.
+The goals will be similar to the fluidigm-scale components of this [lettuce paper](https://doi.org/10.1093/hr/uhac119), and the SNP components of this [melon paper](https://doi.org/10.1186/s12870-023-04056-7). There are also probably some useful components from our lab's recent [pineapple](https://doi.org/10.1007/s00438-025-02275-1) array paper.
 
 Info on our germplasm collection of breadfruit near Hilo: [link](https://www.ars.usda.gov/pacific-west-area/hilo-hi/daniel-k-inouye-us-pacific-basin-agricultural-research-center/tropical-plant-genetic-resources-and-disease-research/docs/breadfruit-collection/) 
 
@@ -43,11 +43,11 @@ You probably already have ways of documenting your code (Git / markdown), but in
 
 | Name                     | Function                             | Photo                                                        |
 | ------------------------ | ------------------------------------ | ------------------------------------------------------------ |
-| **Dr. Qingyi Yu**        | Primary advisor, Research Geneticist | ![image-20260408124340034](C:\Users\justin.merondun\AppData\Roaming\Typora\typora-user-images\image-20260408124340034.png) |
-| **Dr. Justin Merondun**  | Research advisor, Postdoc            | ![image-20260408124408553](C:\Users\justin.merondun\AppData\Roaming\Typora\typora-user-images\image-20260408124408553.png) |
-| **Amberly Buer**         | Lab support, Technician              | ![image-20260408124350992](C:\Users\justin.merondun\AppData\Roaming\Typora\typora-user-images\image-20260408124350992.png) |
-| **Dr. Zhikai Yang**      | Ancillary support, Postdoc           | ![image-20260408124401751](C:\Users\justin.merondun\AppData\Roaming\Typora\typora-user-images\image-20260408124401751.png) |
-| **Dr. Tracie Matsumoto** | USDA Hilo Plant Unit Research Leader | ![image-20260408124419564](C:\Users\justin.merondun\AppData\Roaming\Typora\typora-user-images\image-20260408124419564.png) |
+| **Dr. Qingyi Yu**        | Primary advisor, Research Geneticist | ![Qingyi](imgs/Qingyi.png) |
+| **Dr. Justin Merondun**  | Research advisor, Postdoc            | ![Justin](imgs/Justin.png) |
+| **Amberly Buer**         | Lab support, Technician              | ![Amberly](imgs/Amberly.png) |
+| **Dr. Zhikai Yang**      | Ancillary support, Postdoc           | ![Zhikai](imgs/Zhikai.png) |
+| **Dr. Tracie Matsumoto** | USDA Hilo Plant Unit Research Leader | ![Tracie](imgs/Tracie.png) |
 
 ## Metadata
 
